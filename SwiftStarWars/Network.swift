@@ -29,6 +29,8 @@ enum NetworkEnvironment {
 struct NetworkManager {
     static let env = NetworkEnvironment.prod
     
+    let decoder = JSONDecoder()
+    
     func getAllPeople() {
         let api = StarWarsAPI.people
         
@@ -36,7 +38,10 @@ struct NetworkManager {
             switch result {
             case .success(let response, let data):
                 print(response.description)
-                print(data)
+                
+                let dataString = String(data: data, encoding: String.Encoding.utf8)
+                print(dataString!)
+                
             case .failure(let error):
                 print(error)
             }

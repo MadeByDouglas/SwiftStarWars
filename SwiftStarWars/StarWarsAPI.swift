@@ -85,8 +85,8 @@ extension StarWarsAPI {
         var req = URLRequest(url: url)
         req.httpMethod = method.rawValue
         req.timeoutInterval = 7
-        req.allHTTPHeaderFields = headers
-        req.httpBody = body
+//        req.allHTTPHeaderFields = headers
+//        req.httpBody = body
         
         let task = URLSession.shared.dataTask(with: url) { (result) in
             completion(result)

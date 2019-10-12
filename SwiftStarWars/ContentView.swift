@@ -15,10 +15,13 @@ private let dateFormatter: DateFormatter = {
     return dateFormatter
 }()
 
+let network = NetworkManager()
+
+
 struct ContentView: View {
     @Environment(\.managedObjectContext)
     var viewContext   
- 
+     
     var body: some View {
         NavigationView {
             MasterView()
@@ -67,8 +70,20 @@ struct DetailView: View {
     @ObservedObject var event: Event
 
     var body: some View {
-        Text("\(event.timestamp!, formatter: dateFormatter)")
-            .navigationBarTitle(Text("Detail"))
+        List {
+            
+            Text("\(event.timestamp!, formatter: dateFormatter)")
+                .navigationBarTitle(Text("Detail"))
+
+            
+            Button(
+                action: {
+                    network.getAllPeople()
+                }
+            ) {
+                Text("Star Wars")
+            }
+        }
     }
 }
 
