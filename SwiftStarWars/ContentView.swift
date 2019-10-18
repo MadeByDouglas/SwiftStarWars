@@ -15,7 +15,7 @@ private let dateFormatter: DateFormatter = {
     return dateFormatter
 }()
 
-let network = NetworkManager()
+let manager = DataManager.shared
 
 
 struct ContentView: View {
@@ -30,10 +30,10 @@ struct ContentView: View {
                     leading: EditButton(),
                     trailing: Button(
                         action: {
-                            withAnimation { Event.create(in: self.viewContext) }
+                            withAnimation { manager.savePeopleFromServer(viewContext: self.viewContext) }
                         }
                     ) { 
-                        Image(systemName: "plus")
+                        Image(systemName: "square.and.arrow.down.on.square")
                     }
                 )
             Text("Detail view content goes here")
@@ -44,9 +44,9 @@ struct ContentView: View {
 
 struct MasterView: View {
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Event.timestamp, ascending: true)], 
+        sortDescriptors: [NSSortDescriptor(keyPath: \CoreDataPerson.name, ascending: true)],
         animation: .default)
-    var events: FetchedResults<Event>
+    var events: FetchedResults<CoreDataPerson>
 
     @Environment(\.managedObjectContext)
     var viewContext
@@ -57,7 +57,7 @@ struct MasterView: View {
                 NavigationLink(
                     destination: DetailView(event: event)
                 ) {
-                    Text("\(event.timestamp!, formatter: dateFormatter)")
+                    Text("\(event.name!)")
                 }
             }.onDelete { indices in
                 self.events.delete(at: indices, from: self.viewContext)
@@ -67,22 +67,14 @@ struct MasterView: View {
 }
 
 struct DetailView: View {
-    @ObservedObject var event: Event
+    @ObservedObject var event: CoreDataPerson
 
     var body: some View {
         List {
             
-            Text("\(event.timestamp!, formatter: dateFormatter)")
+            Text("\(event.name!)")
                 .navigationBarTitle(Text("Detail"))
 
-            
-            Button(
-                action: {
-                    network.getAllPeople()
-                }
-            ) {
-                Text("Star Wars")
-            }
         }
     }
 }

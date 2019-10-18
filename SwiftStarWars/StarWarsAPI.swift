@@ -101,3 +101,11 @@ extension StarWarsAPI {
 
 
 }
+
+struct SWAPIResponse<T: Codable>: Codable {
+    var count: Int
+    var next: URL?
+    var previous: URL?
+    var results: [T]
+
+}
