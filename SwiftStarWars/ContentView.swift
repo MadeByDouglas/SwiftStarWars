@@ -70,7 +70,13 @@ struct DetailView: View {
     @ObservedObject var event: CoreDataPerson
 
     var body: some View {
-        List {
+        VStack {
+            
+            NavigationLink(
+                destination: TextView()
+            ) {
+                Image(systemName: "square.and.pencil")
+            }
             
             Text("\(event.name!)")
                 .navigationBarTitle(Text("Detail"))
@@ -78,6 +84,26 @@ struct DetailView: View {
         }
     }
 }
+
+struct TextView: View {
+    var body: some View {
+        TextEditorController()
+    }
+}
+
+extension TextEditorController: UIViewControllerRepresentable {
+    typealias UIViewControllerType = TextEditorController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TextEditorController>) -> TextEditorController {
+        let vc = TextEditorController()
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: TextEditorController, context: UIViewControllerRepresentableContext<TextEditorController>) {
+        //do nothing for now
+    }
+}
+
 
 
 struct ContentView_Previews: PreviewProvider {
