@@ -62,6 +62,10 @@ struct MasterView: View {
             }.onDelete { indices in
                 self.events.delete(at: indices, from: self.viewContext)
             }
+        }.onAppear {
+            #if targetEnvironment(macCatalyst)
+            TextToolbarManager.shared.hideToolbar()
+            #endif
         }
     }
 }
@@ -81,6 +85,10 @@ struct DetailView: View {
             Text("\(event.name!)")
                 .navigationBarTitle(Text("Detail"))
 
+        }.onAppear {
+            #if targetEnvironment(macCatalyst)
+            TextToolbarManager.shared.hideToolbar()
+            #endif
         }
     }
 }

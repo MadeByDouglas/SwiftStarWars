@@ -48,55 +48,93 @@ class TextFormatView: UIView {
     
     @objc func didTapBold() {
         print("bold")
+        
     }
-    
-    
-    
-    
-    // MARK: Mac Catalyst Support
-    
-    #if targetEnvironment(macCatalyst)
-
-    let OurButtonToolbarIdentifier = NSToolbarItem.Identifier(rawValue: "OurButton")
-    
-    func setupTitleBar(_ windowScene: UIWindowScene) {
-        if let titlebar = windowScene.titlebar {
-            titlebar.titleVisibility = .hidden
-            titlebar.toolbar = makeMyFancyToolbar()
-        }
-    }
-    
-    private func makeMyFancyToolbar() -> NSToolbar {
-        let toolbar = NSToolbar(identifier: "MyToolbar")
-        toolbar.delegate = self
-        return toolbar
-    }
-
-    @objc func myFancyAction(sender: UIBarButtonItem) {
-        print("Button Pressed")
-    }
-    #endif
-
 }
 
 #if targetEnvironment(macCatalyst)
 
-extension TextFormatView: NSToolbarDelegate {
-    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
-        if (itemIdentifier == OurButtonToolbarIdentifier) {
-            let barButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(myFancyAction(sender:)))
-            let button = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: barButton)
-            return button
+extension NSToolbarItem.Identifier {
+    static let fontStyle: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "FontStyle")
+}
+
+class TextToolbarManager: NSObject, NSToolbarDelegate {
+    static var shared = TextToolbarManager()
+    
+    
+    lazy var toolbar: NSToolbar = {
+        let toolbar = NSToolbar(identifier: "MyToolbar")
+        toolbar.delegate = self
+        return toolbar
+    }()
+    
+    func setupTitleBar(_ windowScene: UIWindowScene) {
+        if let titlebar = windowScene.titlebar {
+            titlebar.titleVisibility = .hidden
+            titlebar.toolbar = toolbar
         }
-        return nil
+    }
+
+    @objc func didTapBold(sender: UIBarButtonItem) {
+        TextEditor
+    }
+    
+    func hideToolbar() {
+        
+        for (i, _) in toolbar.items.enumerated() {
+            toolbar.removeItem(at: i)
+        }
+        
+    }
+    
+    func showToolbar() {
+        guard toolbar.items.count == 0 else {return}
+        toolbar.insertItem(withItemIdentifier: .fontStyle, at: 0)
+    }
+    
+//    func customToolbarItem(
+//        itemForItemIdentifier itemIdentifier: String,
+//        label: String,
+//        paletteLabel: String,
+//        toolTip: String) -> NSToolbarItem? {
+//
+//        let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier(rawValue: itemIdentifier))
+//
+//        toolbarItem.label = label
+//        toolbarItem.paletteLabel = paletteLabel
+//        toolbarItem.toolTip = toolTip
+//        toolbarItem.target = self
+//
+//        return toolbarItem
+//    }
+    
+    // MARK: Toolbar Delegate functions
+    
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        
+        var toolbarItem: NSToolbarItem = NSToolbarItem()
+
+        if itemIdentifier == .fontStyle {
+                        
+            // 1) Font style toolbar item.
+            
+            let barButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapBold))
+            toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier, barButtonItem: barButton)
+
+            
+        }
+        return toolbarItem
     }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return [NSToolbarItem.Identifier.flexibleSpace, OurButtonToolbarIdentifier]
+        return [.fontStyle]
     }
 
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        return toolbarDefaultItemIdentifiers(toolbar)
+        return [ NSToolbarItem.Identifier.fontStyle,
+        NSToolbarItem.Identifier.space,
+        NSToolbarItem.Identifier.flexibleSpace,
+        NSToolbarItem.Identifier.print ]
     }
 }
 #endif

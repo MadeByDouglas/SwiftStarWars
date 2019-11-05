@@ -23,6 +23,11 @@ final class TextEditorController: UIViewController, UITextViewDelegate {
     
     func setup() {
         
+        #if targetEnvironment(macCatalyst)
+
+        TextToolbarManager.shared.showToolbar()
+        
+        #endif
         
         editView = TextEditor(frame: .zero)
         editView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +57,6 @@ final class TextEditorController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         let html = editView.getHTML()
-        sourceView.editorView.loadHTMLString(html, baseURL: nil)
+//        sourceView.editorView.loadHTMLString(html, baseURL: nil)
     }
 }
