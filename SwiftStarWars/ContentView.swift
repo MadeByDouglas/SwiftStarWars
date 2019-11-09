@@ -64,7 +64,8 @@ struct MasterView: View {
             }
         }.onAppear {
             #if targetEnvironment(macCatalyst)
-            TextToolbarManager.shared.hideToolbar()
+            //TODO: crashing for some reason now, investigate later
+//            TextToolbarManager.shared.hideToolbar()
             #endif
         }
     }
@@ -87,7 +88,8 @@ struct DetailView: View {
 
         }.onAppear {
             #if targetEnvironment(macCatalyst)
-            TextToolbarManager.shared.hideToolbar()
+            //TODO: crashing for some reason now, investigate later
+//            TextToolbarManager.shared.hideToolbar()
             #endif
         }
     }
@@ -95,20 +97,7 @@ struct DetailView: View {
 
 struct TextView: View {
     var body: some View {
-        TextEditorController()
-    }
-}
-
-extension TextEditorController: UIViewControllerRepresentable {
-    typealias UIViewControllerType = TextEditorController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<TextEditorController>) -> TextEditorController {
-        let vc = TextEditorController()
-        return vc
-    }
-    
-    func updateUIViewController(_ uiViewController: TextEditorController, context: UIViewControllerRepresentableContext<TextEditorController>) {
-        //do nothing for now
+        TestTextController()
     }
 }
 
