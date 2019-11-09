@@ -58,9 +58,15 @@ struct SymbolName {
     static let bold = "bold"
     static let italic = "italic"
     static let underline = "underline"
+    static let strikethrough = "strikethrough"
     static let alignLeft = "text.alignleft"
     static let alignCenter = "text.aligncenter"
     static let alignRight = "text.alignright"
+    static let listBullet = "list.bullet"
+    static let listNumber = "list.number"
+    static let textSize = "textformat.size"
+    static let textSub = "textformat.subscript"
+    static let textSuper = "textformat.superscript"
 }
 
 fileprivate extension Selector {
@@ -74,8 +80,8 @@ fileprivate extension Selector {
 class TextToolbarManager: UIResponder, NSToolbarDelegate {
     static var shared = TextToolbarManager()
     
-    let defaultItems: [NSToolbarItem.Identifier] = [.bold, .italic, .underline, .alignLeft, .alignCenter, .alignRight]
-    let defaultTouchbarItems: [NSTouchBarItem.Identifier] = [.bold, .italic, .underline, .alignLeft, .alignCenter, .alignRight]
+    let defaultItems: [NSToolbarItem.Identifier] = [.bold, .italic, .underline, .strikethrough, .alignLeft, .alignCenter, .alignRight, .listBullet, .listNumber, .textSize, .textSub, .textSuper]
+    let defaultTouchbarItems: [NSTouchBarItem.Identifier] = [.bold, .italic, .underline, .strikethrough, .alignLeft, .alignCenter, .alignRight, .listBullet, .listNumber, .textSize, .textSub, .textSuper]
 
     
     lazy var toolbar: NSToolbar = {
@@ -148,9 +154,15 @@ enum ToolBarItem: Int {
     case bold
     case italic
     case underline
+    case strikethrough
     case alignLeft
     case alignCenter
     case alignRight
+    case listBullet
+    case listNumber
+    case textSize
+    case textSub
+    case textSuper
     
     
     static let toolBarID = "primaryToolbar"
@@ -161,9 +173,19 @@ enum ToolBarItem: Int {
         case .bold: self = .bold
         case .italic: self = .italic
         case .underline: self = .underline
+        case .strikethrough: self = .strikethrough
+
         case .alignLeft: self = .alignLeft
         case .alignCenter: self = .alignCenter
         case .alignRight: self = .alignRight
+            
+        case .listBullet: self = .listBullet
+        case .listNumber: self = .listNumber
+
+        case .textSize: self = .textSize
+        case .textSub: self = .textSub
+        case .textSuper: self = .textSuper
+            
         default: print("You passed an unknown format value, defaulting to bold"); self = .bold
         }
     }
@@ -173,9 +195,18 @@ enum ToolBarItem: Int {
         case .bold: return .bold
         case .italic: return .italic
         case .underline: return .underline
+        case .strikethrough: return .strikethrough
+
         case .alignLeft: return .alignLeft
         case .alignCenter: return .alignCenter
         case .alignRight: return .alignRight
+            
+        case .listBullet: return .listBullet
+        case .listNumber: return .listNumber
+
+        case .textSize: return .textSize
+        case .textSub: return .textSub
+        case .textSuper: return .textSuper
         }
     }
     
@@ -184,9 +215,18 @@ enum ToolBarItem: Int {
         case .bold: return SymbolName.bold
         case .italic: return SymbolName.italic
         case .underline: return SymbolName.underline
+        case .strikethrough: return SymbolName.strikethrough
+
         case .alignLeft: return SymbolName.alignLeft
         case .alignCenter: return SymbolName.alignCenter
         case .alignRight: return SymbolName.alignRight
+            
+        case .listBullet: return SymbolName.listBullet
+        case .listNumber: return SymbolName.listNumber
+
+        case .textSize: return SymbolName.textSize
+        case .textSub: return SymbolName.textSub
+        case .textSuper: return SymbolName.textSuper
         }
     }
     
@@ -207,20 +247,36 @@ extension NSToolbarItem.Identifier {
     static let bold = NSToolbarItem.Identifier(rawValue: SymbolName.bold)
     static let italic = NSToolbarItem.Identifier(rawValue: SymbolName.italic)
     static let underline = NSToolbarItem.Identifier(rawValue: SymbolName.underline)
+    static let strikethrough = NSToolbarItem.Identifier(rawValue: SymbolName.strikethrough)
 
     static let alignLeft = NSToolbarItem.Identifier(rawValue: SymbolName.alignLeft)
     static let alignCenter = NSToolbarItem.Identifier(rawValue: SymbolName.alignCenter)
     static let alignRight = NSToolbarItem.Identifier(rawValue: SymbolName.alignRight)
+    
+    static let listBullet = NSToolbarItem.Identifier(rawValue: SymbolName.listBullet)
+    static let listNumber = NSToolbarItem.Identifier(rawValue: SymbolName.listNumber)
+    
+    static let textSize = NSToolbarItem.Identifier(rawValue: SymbolName.textSize)
+    static let textSub = NSToolbarItem.Identifier(rawValue: SymbolName.textSub)
+    static let textSuper = NSToolbarItem.Identifier(rawValue: SymbolName.textSuper)
 }
 
 extension Notification.Name {
     static let bold = Notification.Name(SymbolName.bold)
     static let italic = Notification.Name(SymbolName.italic)
     static let underline = Notification.Name(SymbolName.underline)
+    static let strikethrough = Notification.Name(SymbolName.strikethrough)
     
     static let alignLeft = Notification.Name(SymbolName.alignLeft)
     static let alignCenter = Notification.Name(SymbolName.alignCenter)
     static let alignRight = Notification.Name(SymbolName.alignRight)
+    
+    static let listBullet = Notification.Name(SymbolName.listBullet)
+    static let listNumber = Notification.Name(SymbolName.listNumber)
+
+    static let textSize = Notification.Name(SymbolName.textSize)
+    static let textSub = Notification.Name(SymbolName.textSub)
+    static let textSuper = Notification.Name(SymbolName.textSuper)
 }
 
 // MARK: Touchbar support
@@ -229,9 +285,16 @@ enum TouchToolBarItem: Int {
     case bold
     case italic
     case underline
+    case strikethrough
     case alignLeft
     case alignCenter
     case alignRight
+    case listBullet
+    case listNumber
+    case textSize
+    case textSub
+    case textSuper
+
     
     private static let touchBarBase = "com.SwiftStarWars."
     static let touchBarID = "\(TouchToolBarItem.touchBarBase)touchBar"
@@ -242,9 +305,19 @@ enum TouchToolBarItem: Int {
         case .bold: self = .bold
         case .italic: self = .italic
         case .underline: self = .underline
+        case .strikethrough: self = .strikethrough
+            
         case .alignLeft: self = .alignLeft
         case .alignCenter: self = .alignCenter
         case .alignRight: self = .alignRight
+            
+        case .listBullet: self = .listBullet
+        case .listNumber: self = .listNumber
+
+        case .textSize: self = .textSize
+        case .textSub: self = .textSub
+        case .textSuper: self = .textSuper
+            
         default: print("You passed an unknown format value, defaulting to bold"); self = .bold
         }
     }
@@ -254,9 +327,18 @@ enum TouchToolBarItem: Int {
         case .bold: return .bold
         case .italic: return .italic
         case .underline: return .underline
+        case .strikethrough: return .strikethrough
+            
         case .alignLeft: return .alignLeft
         case .alignCenter: return .alignCenter
         case .alignRight: return .alignRight
+            
+        case .listBullet: return .listBullet
+        case .listNumber: return .listNumber
+
+        case .textSize: return .textSize
+        case .textSub: return .textSub
+        case .textSuper: return .textSuper
         }
     }
     
@@ -269,9 +351,18 @@ enum TouchToolBarItem: Int {
         case .bold: return SymbolName.bold
         case .italic: return SymbolName.italic
         case .underline: return SymbolName.underline
+        case .strikethrough: return SymbolName.strikethrough
+
         case .alignLeft: return SymbolName.alignLeft
         case .alignCenter: return SymbolName.alignCenter
         case .alignRight: return SymbolName.alignRight
+            
+        case .listBullet: return SymbolName.listBullet
+        case .listNumber: return SymbolName.listNumber
+
+        case .textSize: return SymbolName.textSize
+        case .textSub: return SymbolName.textSub
+        case .textSuper: return SymbolName.textSuper
         }
     }
     
@@ -289,11 +380,18 @@ extension NSTouchBarItem.Identifier {
     static let bold = NSTouchBarItem.Identifier(TouchToolBarItem.bold.id)
     static let italic = NSTouchBarItem.Identifier(TouchToolBarItem.italic.id)
     static let underline = NSTouchBarItem.Identifier(TouchToolBarItem.underline.id)
+    static let strikethrough = NSTouchBarItem.Identifier(TouchToolBarItem.strikethrough.id)
     
     static let alignLeft = NSTouchBarItem.Identifier(TouchToolBarItem.alignLeft.id)
     static let alignCenter = NSTouchBarItem.Identifier(TouchToolBarItem.alignCenter.id)
     static let alignRight = NSTouchBarItem.Identifier(TouchToolBarItem.alignRight.id)
 
+    static let listBullet = NSTouchBarItem.Identifier(TouchToolBarItem.listBullet.id)
+    static let listNumber = NSTouchBarItem.Identifier(TouchToolBarItem.listNumber.id)
+    
+    static let textSize = NSTouchBarItem.Identifier(TouchToolBarItem.textSize.id)
+    static let textSub = NSTouchBarItem.Identifier(TouchToolBarItem.textSub.id)
+    static let textSuper = NSTouchBarItem.Identifier(TouchToolBarItem.textSuper.id)
 }
 
 extension AppDelegate: NSTouchBarDelegate {

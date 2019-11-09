@@ -63,6 +63,10 @@ final class TestTextController: UIViewController {
             self.editView.underline()
         }
         
+        NotificationCenter.default.addObserver(forName: .strikethrough, object: nil, queue: nil) { (notify) in
+            self.editView.strikethrough()
+        }
+        
         NotificationCenter.default.addObserver(forName: .alignLeft, object: nil, queue: nil) { (notify) in
             self.editView.alignLeft()
         }
@@ -73,6 +77,26 @@ final class TestTextController: UIViewController {
         
         NotificationCenter.default.addObserver(forName: .alignRight, object: nil, queue: nil) { (notify) in
             self.editView.alignRight()
+        }
+        
+        NotificationCenter.default.addObserver(forName: .listBullet, object: nil, queue: nil) { (notify) in
+            self.editView.unorderedList()
+        }
+        
+        NotificationCenter.default.addObserver(forName: .listNumber, object: nil, queue: nil) { (notify) in
+            self.editView.orderedList()
+        }
+        
+        NotificationCenter.default.addObserver(forName: .textSize, object: nil, queue: nil) { (notify) in
+            self.editView.setFontSize(18) //TODO: make this more dynamic text sizing
+        }
+        
+        NotificationCenter.default.addObserver(forName: .textSub, object: nil, queue: nil) { (notify) in
+            self.editView.subscriptText() //TODO: this doesnt work as expected, no way to undo it
+        }
+        
+        NotificationCenter.default.addObserver(forName: .textSuper, object: nil, queue: nil) { (notify) in
+            self.editView.superscript() //TODO: this doesnt work as expected, no way to undo it
         }
         
         #endif
