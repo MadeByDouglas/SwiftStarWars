@@ -24,6 +24,9 @@
 		C36F7745236CB57400F646CE /* TextEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F7744236CB57400F646CE /* TextEditorController.swift */; };
 		C36F7747236CE42F00F646CE /* TextFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F7746236CE42F00F646CE /* TextFormatView.swift */; };
 		C370E34F2359432D0023F6BB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C370E34E2359432D0023F6BB /* DataManager.swift */; };
+		C392F8F3237213E100AC858F /* RichEditorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30652A52372137E0057FC30 /* RichEditorView.framework */; };
+		C392F8F4237213E100AC858F /* RichEditorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C30652A52372137E0057FC30 /* RichEditorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C392F8F7237227EB00AC858F /* TestTextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C392F8F6237227EA00AC858F /* TestTextController.swift */; };
 		C3B72E6D2358E8AF00ED8440 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B72E6C2358E8AF00ED8440 /* Film.swift */; };
 		C3B72E6F2358EB1200ED8440 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B72E6E2358EB1200ED8440 /* Person.swift */; };
 		C3B72E712358EC5700ED8440 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B72E702358EC5700ED8440 /* Starship.swift */; };
@@ -33,6 +36,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C30652A42372137E0057FC30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FBA6AAF91AD3EC9F00721644;
+			remoteInfo = RichEditorView;
+		};
+		C30652A62372137E0057FC30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FBA6AB041AD3EC9F00721644;
+			remoteInfo = RichEditorViewTests;
+		};
 		C333BB20235153BB00E2C89F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C333BAFC235153BA00E2C89F /* Project object */;
@@ -49,7 +66,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C392F8F5237213E200AC858F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C392F8F4237213E100AC858F /* RichEditorView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RichEditorView.xcodeproj; path = ../RichEditorView/RichEditorView.xcodeproj; sourceTree = "<group>"; };
 		C333BB04235153BA00E2C89F /* SwiftStarWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftStarWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C333BB07235153BA00E2C89F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C333BB0A235153BA00E2C89F /* SwiftStarWars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftStarWars.xcdatamodel; sourceTree = "<group>"; };
@@ -74,6 +106,7 @@
 		C36F7744236CB57400F646CE /* TextEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorController.swift; sourceTree = "<group>"; };
 		C36F7746236CE42F00F646CE /* TextFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatView.swift; sourceTree = "<group>"; };
 		C370E34E2359432D0023F6BB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		C392F8F6237227EA00AC858F /* TestTextController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTextController.swift; sourceTree = "<group>"; };
 		C3B72E6C2358E8AF00ED8440 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		C3B72E6E2358EB1200ED8440 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C3B72E702358EC5700ED8440 /* Starship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
@@ -87,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C392F8F3237213E100AC858F /* RichEditorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +141,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C306529E2372137E0057FC30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C30652A02372137E0057FC30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C30652A52372137E0057FC30 /* RichEditorView.framework */,
+				C30652A72372137E0057FC30 /* RichEditorViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C333BAFB235153BA00E2C89F = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +165,7 @@
 				C333BB22235153BB00E2C89F /* SwiftStarWarsTests */,
 				C333BB2D235153BB00E2C89F /* SwiftStarWarsUITests */,
 				C333BB05235153BA00E2C89F /* Products */,
+				C306529E2372137E0057FC30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +188,7 @@
 				C36F773F236CAE8500F646CE /* TextEditor.swift */,
 				C36F7746236CE42F00F646CE /* TextFormatView.swift */,
 				C36F7744236CB57400F646CE /* TextEditorController.swift */,
+				C392F8F6237227EA00AC858F /* TestTextController.swift */,
 				C370E34E2359432D0023F6BB /* DataManager.swift */,
 				C333BB3D2351542100E2C89F /* StarWarsAPI.swift */,
 				C3B72E6E2358EB1200ED8440 /* Person.swift */,
@@ -193,6 +246,7 @@
 				C333BB00235153BA00E2C89F /* Sources */,
 				C333BB01235153BA00E2C89F /* Frameworks */,
 				C333BB02235153BA00E2C89F /* Resources */,
+				C392F8F5237213E200AC858F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -273,6 +327,12 @@
 			mainGroup = C333BAFB235153BA00E2C89F;
 			productRefGroup = C333BB05235153BA00E2C89F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C30652A02372137E0057FC30 /* Products */;
+					ProjectRef = C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C333BB03235153BA00E2C89F /* SwiftStarWars */,
@@ -281,6 +341,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C30652A52372137E0057FC30 /* RichEditorView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RichEditorView.framework;
+			remoteRef = C30652A42372137E0057FC30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C30652A72372137E0057FC30 /* RichEditorViewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RichEditorViewTests.xctest;
+			remoteRef = C30652A62372137E0057FC30 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C333BB02235153BA00E2C89F /* Resources */ = {
@@ -317,6 +394,7 @@
 			files = (
 				C333BB0F235153BA00E2C89F /* Event.swift in Sources */,
 				C3B72E712358EC5700ED8440 /* Starship.swift in Sources */,
+				C392F8F7237227EB00AC858F /* TestTextController.swift in Sources */,
 				C333BB11235153BA00E2C89F /* ContentView.swift in Sources */,
 				C370E34F2359432D0023F6BB /* DataManager.swift in Sources */,
 				C333BB3F2351542100E2C89F /* StarWarsAPI.swift in Sources */,
