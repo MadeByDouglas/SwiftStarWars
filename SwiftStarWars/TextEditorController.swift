@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class TextEditorController: UIViewController, UITextViewDelegate {
     
@@ -56,7 +57,20 @@ final class TextEditorController: UIViewController, UITextViewDelegate {
 
     
     func textViewDidChange(_ textView: UITextView) {
-        let html = editView.getHTML()
+//        let html = editView.getHTML()
 //        sourceView.editorView.loadHTMLString(html, baseURL: nil)
+    }
+}
+
+extension TextEditorController: UIViewControllerRepresentable {
+    typealias UIViewControllerType = TextEditorController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<TextEditorController>) -> TextEditorController {
+        let vc = TextEditorController()
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: TextEditorController, context: UIViewControllerRepresentableContext<TextEditorController>) {
+        //do nothing for now
     }
 }
