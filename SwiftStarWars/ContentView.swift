@@ -65,7 +65,7 @@ struct MasterView: View {
         }.onAppear {
             #if targetEnvironment(macCatalyst)
             //TODO: crashing for some reason now, investigate later
-//            TextToolbarManager.shared.hideToolbar()
+            TextToolbarManager.shared.hideToolbar()
             #endif
         }
     }
@@ -89,7 +89,7 @@ struct DetailView: View {
         }.onAppear {
             #if targetEnvironment(macCatalyst)
             //TODO: crashing for some reason now, investigate later
-//            TextToolbarManager.shared.hideToolbar()
+            TextToolbarManager.shared.hideToolbar()
             #endif
         }
     }
