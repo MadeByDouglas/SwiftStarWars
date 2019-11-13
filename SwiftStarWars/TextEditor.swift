@@ -47,7 +47,7 @@ class TextEditor: UIView {
 extension TextEditor: WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     
     //MARK: Load Rich Text
-    fileprivate func loadTextEditor(){
+    fileprivate func loadTextEditor() {
         
 //        let configuration = WKWebViewConfiguration()
 //        configuration.userContentController.addUserScript(

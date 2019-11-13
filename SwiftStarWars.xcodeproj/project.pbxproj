@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C327FD51237C93D300BF37A8 /* TextToolbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD50237C93D300BF37A8 /* TextToolbarManager.swift */; };
+		C327FD55237C945F00BF37A8 /* Text Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD54237C945F00BF37A8 /* Text Helpers.swift */; };
+		C327FD57237C94ED00BF37A8 /* TextToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD56237C94ED00BF37A8 /* TextToolbar.swift */; };
+		C327FD59237C95B300BF37A8 /* TextToolbarTouchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD58237C95B300BF37A8 /* TextToolbarTouchbar.swift */; };
+		C327FD5B237C95F200BF37A8 /* TextTouchbarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD5A237C95F200BF37A8 /* TextTouchbarManager.swift */; };
+		C327FD5D237C961600BF37A8 /* TextTouchbar Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327FD5C237C961600BF37A8 /* TextTouchbar Helpers.swift */; };
 		C333BB08235153BA00E2C89F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333BB07235153BA00E2C89F /* AppDelegate.swift */; };
 		C333BB0B235153BA00E2C89F /* SwiftStarWars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C333BB09235153BA00E2C89F /* SwiftStarWars.xcdatamodeld */; };
 		C333BB0D235153BA00E2C89F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333BB0C235153BA00E2C89F /* SceneDelegate.swift */; };
@@ -82,6 +88,12 @@
 
 /* Begin PBXFileReference section */
 		C306529F2372137E0057FC30 /* RichEditorView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RichEditorView.xcodeproj; path = ../RichEditorView/RichEditorView.xcodeproj; sourceTree = "<group>"; };
+		C327FD50237C93D300BF37A8 /* TextToolbarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToolbarManager.swift; sourceTree = "<group>"; };
+		C327FD54237C945F00BF37A8 /* Text Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text Helpers.swift"; sourceTree = "<group>"; };
+		C327FD56237C94ED00BF37A8 /* TextToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToolbar.swift; sourceTree = "<group>"; };
+		C327FD58237C95B300BF37A8 /* TextToolbarTouchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToolbarTouchbar.swift; sourceTree = "<group>"; };
+		C327FD5A237C95F200BF37A8 /* TextTouchbarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTouchbarManager.swift; sourceTree = "<group>"; };
+		C327FD5C237C961600BF37A8 /* TextTouchbar Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextTouchbar Helpers.swift"; sourceTree = "<group>"; };
 		C333BB04235153BA00E2C89F /* SwiftStarWars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftStarWars.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C333BB07235153BA00E2C89F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C333BB0A235153BA00E2C89F /* SwiftStarWars.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftStarWars.xcdatamodel; sourceTree = "<group>"; };
@@ -158,6 +170,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C327FD5E237C985000BF37A8 /* Mac Catalyst Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				C327FD5F237C986200BF37A8 /* Touchbar Support */,
+				C327FD56237C94ED00BF37A8 /* TextToolbar.swift */,
+				C327FD54237C945F00BF37A8 /* Text Helpers.swift */,
+				C327FD50237C93D300BF37A8 /* TextToolbarManager.swift */,
+			);
+			path = "Mac Catalyst Toolbar";
+			sourceTree = "<group>";
+		};
+		C327FD5F237C986200BF37A8 /* Touchbar Support */ = {
+			isa = PBXGroup;
+			children = (
+				C327FD5A237C95F200BF37A8 /* TextTouchbarManager.swift */,
+				C327FD5C237C961600BF37A8 /* TextTouchbar Helpers.swift */,
+				C327FD58237C95B300BF37A8 /* TextToolbarTouchbar.swift */,
+			);
+			path = "Touchbar Support";
+			sourceTree = "<group>";
+		};
 		C333BAFB235153BA00E2C89F = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +220,7 @@
 				C36F7742236CAEB900F646CE /* editor.html */,
 				C36F773F236CAE8500F646CE /* TextEditor.swift */,
 				C36F7746236CE42F00F646CE /* TextFormatView.swift */,
+				C327FD5E237C985000BF37A8 /* Mac Catalyst Toolbar */,
 				C36F7744236CB57400F646CE /* TextEditorController.swift */,
 				C392F8F6237227EA00AC858F /* TestTextController.swift */,
 				C370E34E2359432D0023F6BB /* DataManager.swift */,
@@ -253,6 +287,8 @@
 			dependencies = (
 			);
 			name = SwiftStarWars;
+			packageProductDependencies = (
+			);
 			productName = SwiftStarWars;
 			productReference = C333BB04235153BA00E2C89F /* SwiftStarWars.app */;
 			productType = "com.apple.product-type.application";
@@ -325,6 +361,8 @@
 				Base,
 			);
 			mainGroup = C333BAFB235153BA00E2C89F;
+			packageReferences = (
+			);
 			productRefGroup = C333BB05235153BA00E2C89F /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -396,18 +434,24 @@
 				C3B72E712358EC5700ED8440 /* Starship.swift in Sources */,
 				C392F8F7237227EB00AC858F /* TestTextController.swift in Sources */,
 				C333BB11235153BA00E2C89F /* ContentView.swift in Sources */,
+				C327FD59237C95B300BF37A8 /* TextToolbarTouchbar.swift in Sources */,
+				C327FD57237C94ED00BF37A8 /* TextToolbar.swift in Sources */,
 				C370E34F2359432D0023F6BB /* DataManager.swift in Sources */,
 				C333BB3F2351542100E2C89F /* StarWarsAPI.swift in Sources */,
 				C36F7745236CB57400F646CE /* TextEditorController.swift in Sources */,
 				C3B72E752358EDDC00ED8440 /* Species.swift in Sources */,
+				C327FD51237C93D300BF37A8 /* TextToolbarManager.swift in Sources */,
 				C3B72E772358EEB700ED8440 /* Planet.swift in Sources */,
 				C36F7740236CAE8500F646CE /* TextEditor.swift in Sources */,
+				C327FD55237C945F00BF37A8 /* Text Helpers.swift in Sources */,
 				C333BB3E2351542100E2C89F /* Network.swift in Sources */,
 				C36F7747236CE42F00F646CE /* TextFormatView.swift in Sources */,
 				C3B72E6F2358EB1200ED8440 /* Person.swift in Sources */,
+				C327FD5B237C95F200BF37A8 /* TextTouchbarManager.swift in Sources */,
 				C333BB0B235153BA00E2C89F /* SwiftStarWars.xcdatamodeld in Sources */,
 				C3B72E6D2358E8AF00ED8440 /* Film.swift in Sources */,
 				C3B72E732358ED3E00ED8440 /* Vehicle.swift in Sources */,
+				C327FD5D237C961600BF37A8 /* TextTouchbar Helpers.swift in Sources */,
 				C333BB08235153BA00E2C89F /* AppDelegate.swift in Sources */,
 				C333BB0D235153BA00E2C89F /* SceneDelegate.swift in Sources */,
 			);
