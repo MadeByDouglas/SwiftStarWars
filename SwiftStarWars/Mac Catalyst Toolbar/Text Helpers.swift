@@ -144,7 +144,7 @@ extension Selector {
     static let barButton = #selector(TextToolbarManager.didTapBarButton)
     static let groupButton = #selector(TextToolbarManager.didTapGroupButton)
     static let touchBarButton = #selector(TextToolbarManager.didTapTouchBarButton)
-
+    static let didTapKey = #selector(TextToolbarManager.didTapKey)
 }
 
 extension NSToolbarItem.Identifier {

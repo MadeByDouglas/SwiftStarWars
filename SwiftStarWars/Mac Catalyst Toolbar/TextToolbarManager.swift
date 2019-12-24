@@ -124,14 +124,27 @@ class TextToolbarManager: UIResponder, NSToolbarDelegate {
         }
     }
     
-    // TODO: check back on HotKey library see if they support catalyst.
-//    var bold = HotKey(key: .b, modifiers: [.command])
-//
-//    func setupKeyboardListeners() {
-//        bold.keyDownHandler = {
-//            self.updateButton(index: 0)
-//        }
-//    }
+    
+    //TODO: doesnt seem to work, needs to be implmenented in VC by overriding 'var keyCommands'
+    func setupKeyboardListeners() -> [UIKeyCommand] {
+        
+        let bold = UIKeyCommand(input: "b", modifierFlags: .command, action: .didTapKey)
+        let italic = UIKeyCommand(input: "i", modifierFlags: .command, action: .didTapKey)
+        let underline = UIKeyCommand(input: "u", modifierFlags: .command, action: .didTapKey)
+        
+        return [bold, italic, underline]
+
+    }
+    
+    @objc func didTapKey(sender: UIKeyCommand) {
+        if sender.input == "b" {
+            updateButton(index: 0)
+        } else if sender.input == "i" {
+            updateButton(index: 1)
+        } else if sender.input == "u" {
+            updateButton(index: 2)
+        }
+    }
     
     func updateButton(index: Int) {
         guard toolbar.items.count > 0 else {return}

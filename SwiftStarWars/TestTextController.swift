@@ -47,8 +47,35 @@ final class TestTextController: UIViewController {
     
     func setup() {
         
-        #if targetEnvironment(macCatalyst)
 
+        setupToolbarNotifications()
+        
+        editView = RichEditorView(frame: .zero)
+        editView.translatesAutoresizingMaskIntoConstraints = false
+                
+        sourceView = UITextView(frame: .zero)
+        sourceView.translatesAutoresizingMaskIntoConstraints = false
+
+        stack = UIStackView(arrangedSubviews: [editView, sourceView])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.alignment = .fill
+        stack.axis = .vertical
+
+        view.addSubview(stack)
+        
+        NSLayoutConstraint.activate([
+            
+            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
+    }
+    
+    func setupToolbarNotifications() {
+        #if targetEnvironment(macCatalyst)
         TextToolbarManager.shared.showToolbar()
         
         NotificationCenter.default.addObserver(forName: .bold, object: nil, queue: nil) { (notify) in
@@ -98,31 +125,7 @@ final class TestTextController: UIViewController {
         NotificationCenter.default.addObserver(forName: .textSuper, object: nil, queue: nil) { (notify) in
             self.editView.superscript() //TODO: this doesnt work as expected, no way to undo it
         }
-        
         #endif
-        
-        editView = RichEditorView(frame: .zero)
-        editView.translatesAutoresizingMaskIntoConstraints = false
-                
-        sourceView = UITextView(frame: .zero)
-        sourceView.translatesAutoresizingMaskIntoConstraints = false
-
-        stack = UIStackView(arrangedSubviews: [editView, sourceView])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.distribution = .fillEqually
-        stack.alignment = .fill
-        stack.axis = .vertical
-
-        view.addSubview(stack)
-        
-        NSLayoutConstraint.activate([
-            
-            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
     }
 
 }
