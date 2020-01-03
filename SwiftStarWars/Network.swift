@@ -8,11 +8,11 @@
 
 import Foundation
 
-typealias dataTaskResult = Swift.Result<(URLResponse, Data), Error>
-typealias dataTaskCompletion = (dataTaskResult) -> Void
+typealias DataTaskResult = Swift.Result<(URLResponse, Data), Error>
+typealias DataTaskCompletion = (DataTaskResult) -> Void
 
-typealias peopleResult = Swift.Result<People, Error>
-typealias peopleCompletion = (peopleResult) -> Void
+typealias PeopleResult = Swift.Result<People, Error>
+typealias PeopleCompletion = (PeopleResult) -> Void
 
 
 enum NetworkError: String, Error {
@@ -34,7 +34,7 @@ struct NetworkManager {
     
     let decoder = JSONDecoder()
     
-    func getAllPeople(completion: @escaping peopleCompletion) {
+    func getAllPeople(completion: @escaping PeopleCompletion) {
         let api = StarWarsAPI.people
         
         api.request { (result) in
@@ -78,7 +78,7 @@ struct NetworkManager {
 
 
 extension URLSession {
-    func dataTask(with url: URL, result: @escaping dataTaskCompletion) -> URLSessionDataTask {
+    func dataTask(with url: URL, result: @escaping DataTaskCompletion) -> URLSessionDataTask {
         return dataTask(with: url) { (data, response, error) in
             if let error = error {
                 result(.failure(error))

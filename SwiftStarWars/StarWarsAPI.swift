@@ -79,7 +79,7 @@ extension StarWarsAPI {
 
     }
     
-    func request(completion: @escaping dataTaskCompletion) {
+    func request(completion: @escaping DataTaskCompletion) {
         let url = baseURL.appendingPathComponent(path)
         
         var req = URLRequest(url: url)
